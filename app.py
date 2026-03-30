@@ -43,27 +43,29 @@ def get_sentiment(text):
         return "Negative"
     else:
         return "Neutral"
+return sentiment, polarity
     
-    # Complaint Category Detection
+# Complaint category function
 def detect_complaint_category(text):
-    text = str(text).lower()
-    
-    # Delivery problems
-    if "late" in text or "delay" in text or "delivery" in text:
+    text = text.lower()
+
+    delivery_words = ["late", "delay", "delivery"]
+    service_words = ["bad", "worst", "slow", "rude"]
+    product_words = ["quality", "damaged", "product"]
+    price_words = ["price", "cost", "expensive"]
+
+    if any(word in text for word in delivery_words):
         return "Delivery Issue"
-    
-    # Service problems
-    elif "bad" in text or "worst" in text or "slow" in text or "rude" in text:
+
+    elif any(word in text for word in service_words):
         return "Service Issue"
-    
-    # Product problems
-    elif "quality" in text or "product" in text or "damaged" in text:
+
+    elif any(word in text for word in product_words):
         return "Product Issue"
-    
-    # Price problems
-    elif "price" in text or "cost" in text or "expensive" in text:
+
+    elif any(word in text for word in price_words):
         return "Pricing Issue"
-    
+
     else:
         return "General"
     
@@ -152,6 +154,11 @@ print("\nAnalysis Result:\n")
 print(data)
 print("\nAnalysis Result:\n")
 print(data)
+import matplotlib.pyplot as plt
+
+data["Sentiment"].value_counts().plot(kind='pie', autopct='%1.1f%%')
+plt.title("Sentiment Distribution")
+plt.show()
 # ===== Summary Report Generation =====
 
 report_file = open("report.txt", "w")
@@ -170,6 +177,18 @@ for sentiment, count in sentiment_counts.items():
     report_file.write(f"{sentiment}: {count}\n")
 
 report_file.write("\n")
+def get_sentiment_with_score(text):
+    analysis = TextBlob(text)
+    polarity = analysis.sentiment.polarity
+
+    if polarity > 0:
+        sentiment = "Positive"
+    elif polarity < 0:
+        sentiment = "Negative"
+    else:
+        sentiment = "Neutral"
+
+    return sentiment, polarity
 
 # Complaint Category Summary
 report_file.write("Complaint Category Summary:\n")
@@ -237,3 +256,16 @@ for category, count in category_counts.items():
 # Print suggestions
 for s in suggestions:
     print(s)
+    
+    data.to_csv("final_output.csv", index=False)
+print("Results saved in final_output.csv")
+
+print("1. Enter Feedback")
+print("2. Load from CSV")
+
+choice = input("Enter choice: ")
+
+if choice == "1":
+    text = input("Enter feedback: ")
+else:
+    data = pd.read_csv("feedback.csv")
