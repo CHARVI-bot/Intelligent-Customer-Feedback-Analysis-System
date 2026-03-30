@@ -21,7 +21,7 @@ def improvement_suggestion(text):
 # Load data
 data = pd.read_csv("feedback.csv")
 
-# MAIN LOOP (add here)
+# MAIN LOOP 
 for i, row in data.iterrows():
     text = row['feedback']
     keywords = extract_keywords(text)
