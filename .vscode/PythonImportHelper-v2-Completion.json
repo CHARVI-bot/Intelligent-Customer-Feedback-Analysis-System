@@ -1,5 +1,80 @@
 [
     {
+        "label": "pandas",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pandas",
+        "description": "pandas",
+        "detail": "pandas",
+        "documentation": {}
+    },
+    {
+        "label": "TextBlob",
+        "importPath": "textblob",
+        "description": "textblob",
+        "isExtraImport": true,
+        "detail": "textblob",
+        "documentation": {}
+    },
+    {
+        "label": "TextBlob",
+        "importPath": "textblob",
+        "description": "textblob",
+        "isExtraImport": true,
+        "detail": "textblob",
+        "documentation": {}
+    },
+    {
+        "label": "matplotlib.pyplot",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "matplotlib.pyplot",
+        "description": "matplotlib.pyplot",
+        "detail": "matplotlib.pyplot",
+        "documentation": {}
+    },
+    {
+        "label": "nltk",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "nltk",
+        "description": "nltk",
+        "detail": "nltk",
+        "documentation": {}
+    },
+    {
+        "label": "stopwords",
+        "importPath": "nltk.corpus",
+        "description": "nltk.corpus",
+        "isExtraImport": true,
+        "detail": "nltk.corpus",
+        "documentation": {}
+    },
+    {
+        "label": "word_tokenize",
+        "importPath": "nltk.tokenize",
+        "description": "nltk.tokenize",
+        "isExtraImport": true,
+        "detail": "nltk.tokenize",
+        "documentation": {}
+    },
+    {
+        "label": "Counter",
+        "importPath": "collections",
+        "description": "collections",
+        "isExtraImport": true,
+        "detail": "collections",
+        "documentation": {}
+    },
+    {
+        "label": "Counter",
+        "importPath": "collections",
+        "description": "collections",
+        "isExtraImport": true,
+        "detail": "collections",
+        "documentation": {}
+    },
+    {
         "label": "FastAPI",
         "importPath": "fastapi",
         "description": "fastapi",
@@ -152,6 +227,276 @@
         "description": "analyzer",
         "peekOfCode": "def analyze_text(text: str, rating: int) -> dict:\n    text_lower = text.lower()\n    # Determine Sentiment\n    sentiment_score = rating / 5.0  # basic correlation\n    sentiment = \"Neutral\"\n    if rating >= 4 or any(word in text_lower for word in [\"great\", \"excellent\", \"good\", \"amazing\", \"love\"]):\n        sentiment = \"Positive\"\n        sentiment_score = max(sentiment_score, 0.8)\n    elif rating <= 2 or any(word in text_lower for word in [\"bad\", \"poor\", \"terrible\", \"hate\", \"awful\", \"worst\"]):\n        sentiment = \"Negative\"",
         "detail": "analyzer",
+        "documentation": {}
+    },
+    {
+        "label": "extract_keywords",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def extract_keywords(text):\n    pass\ndef improvement_suggestion(text):\n    pass\n# Load data\ndata = pd.read_csv(\"feedback.csv\")\n# MAIN LOOP \nfor i, row in data.iterrows():\n    text = row['feedback']\n    keywords = extract_keywords(text)",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "improvement_suggestion",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def improvement_suggestion(text):\n    pass\n# Load data\ndata = pd.read_csv(\"feedback.csv\")\n# MAIN LOOP \nfor i, row in data.iterrows():\n    text = row['feedback']\n    keywords = extract_keywords(text)\n    suggestion = improvement_suggestion(text)\n    print(\"\\nFeedback\", i+1)",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "get_sentiment",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def get_sentiment(text):\n    analysis = TextBlob(str(text))\n    polarity = analysis.sentiment.polarity\n    if polarity > 0:\n        return \"Positive\"\n    elif polarity < 0:\n        return \"Negative\"\n    else:\n        return \"Neutral\"\nreturn sentiment, polarity",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "detect_complaint_category",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def detect_complaint_category(text):\n    text = text.lower()\n    delivery_words = [\"late\", \"delay\", \"delivery\"]\n    service_words = [\"bad\", \"worst\", \"slow\", \"rude\"]\n    product_words = [\"quality\", \"damaged\", \"product\"]\n    price_words = [\"price\", \"cost\", \"expensive\"]\n    if any(word in text for word in delivery_words):\n        return \"Delivery Issue\"\n    elif any(word in text for word in service_words):\n        return \"Service Issue\"",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "extract_keywords",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def extract_keywords(text):\n    # Convert text to lowercase\n    text = str(text).lower()\n    # Break sentence into words\n    words = word_tokenize(text)\n    # Remove stopwords and special characters\n    keywords = []\n    for word in words:\n        if word.isalnum() and word not in stop_words:\n            keywords.append(word)",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "detect_issue",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def detect_issue(text):\n    text = str(text).lower()\n    if \"late\" in text or \"delay\" in text:\n        return \"Delivery Issue\"\n    elif \"bad\" in text or \"worst\" in text or \"slow\" in text:\n        return \"Service Issue\"\n    elif \"quality\" in text or \"product\" in text:\n        return \"Product Issue\"\n    else:\n        return \"General\"",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "get_sentiment_with_score",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def get_sentiment_with_score(text):\n    analysis = TextBlob(text)\n    polarity = analysis.sentiment.polarity\n    if polarity > 0:\n        sentiment = \"Positive\"\n    elif polarity < 0:\n        sentiment = \"Negative\"\n    else:\n        sentiment = \"Neutral\"\n    return sentiment, polarity",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "data",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "data = pd.read_csv(\"feedback.csv\")\n# MAIN LOOP \nfor i, row in data.iterrows():\n    text = row['feedback']\n    keywords = extract_keywords(text)\n    suggestion = improvement_suggestion(text)\n    print(\"\\nFeedback\", i+1)\n    print(\"Text:\", text)\n    print(\"Keywords:\", keywords)\n    print(\"Suggestion:\", suggestion)",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "stop_words",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "stop_words = set(stopwords.words('english'))\n# Keyword extraction function\ndef extract_keywords(text):\n    # Convert text to lowercase\n    text = str(text).lower()\n    # Break sentence into words\n    words = word_tokenize(text)\n    # Remove stopwords and special characters\n    keywords = []\n    for word in words:",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "data[\"Sentiment\"]",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "data[\"Sentiment\"] = data[\"feedback\"].apply(get_sentiment)\ndata[\"Complaint Category\"] = data[\"feedback\"].apply(detect_complaint_category)\ndata[\"Issue Category\"] = data[\"feedback\"].apply(detect_issue)\ndata[\"Keywords\"] = data[\"feedback\"].apply(extract_keywords)\nprint(data)\n# Sentiment Dashboard\nplt.figure(figsize=(6,4))\ndata[\"Sentiment\"].value_counts().plot(kind=\"bar\")\nplt.title(\"Sentiment Analysis\")\nplt.xlabel(\"Sentiment\")",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "data[\"Keywords\"]",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "data[\"Keywords\"] = data[\"feedback\"].apply(extract_keywords)\nprint(data)\n# Sentiment Dashboard\nplt.figure(figsize=(6,4))\ndata[\"Sentiment\"].value_counts().plot(kind=\"bar\")\nplt.title(\"Sentiment Analysis\")\nplt.xlabel(\"Sentiment\")\nplt.ylabel(\"Number of Feedbacks\")\nplt.show()\n# Complaint Category Dashboard",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "all_keywords",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "all_keywords = \" \".join(data[\"Keywords\"])\nword_list = all_keywords.split(\", \")\n# Count frequency\nkeyword_counts = Counter(word_list)\ntop_keywords = keyword_counts.most_common(10)\n# Convert to DataFrame\nkw_df = pd.DataFrame(top_keywords, columns=[\"Keyword\", \"Count\"])\n# Plot\nplt.figure(figsize=(6,4))\nplt.bar(kw_df[\"Keyword\"], kw_df[\"Count\"])",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "word_list",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "word_list = all_keywords.split(\", \")\n# Count frequency\nkeyword_counts = Counter(word_list)\ntop_keywords = keyword_counts.most_common(10)\n# Convert to DataFrame\nkw_df = pd.DataFrame(top_keywords, columns=[\"Keyword\", \"Count\"])\n# Plot\nplt.figure(figsize=(6,4))\nplt.bar(kw_df[\"Keyword\"], kw_df[\"Count\"])\nplt.title(\"Top Keywords\")",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "keyword_counts",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "keyword_counts = Counter(word_list)\ntop_keywords = keyword_counts.most_common(10)\n# Convert to DataFrame\nkw_df = pd.DataFrame(top_keywords, columns=[\"Keyword\", \"Count\"])\n# Plot\nplt.figure(figsize=(6,4))\nplt.bar(kw_df[\"Keyword\"], kw_df[\"Count\"])\nplt.title(\"Top Keywords\")\nplt.xlabel(\"Keywords\")\nplt.ylabel(\"Frequency\")",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "top_keywords",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "top_keywords = keyword_counts.most_common(10)\n# Convert to DataFrame\nkw_df = pd.DataFrame(top_keywords, columns=[\"Keyword\", \"Count\"])\n# Plot\nplt.figure(figsize=(6,4))\nplt.bar(kw_df[\"Keyword\"], kw_df[\"Count\"])\nplt.title(\"Top Keywords\")\nplt.xlabel(\"Keywords\")\nplt.ylabel(\"Frequency\")\nplt.xticks(rotation=45)",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "kw_df",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "kw_df = pd.DataFrame(top_keywords, columns=[\"Keyword\", \"Count\"])\n# Plot\nplt.figure(figsize=(6,4))\nplt.bar(kw_df[\"Keyword\"], kw_df[\"Count\"])\nplt.title(\"Top Keywords\")\nplt.xlabel(\"Keywords\")\nplt.ylabel(\"Frequency\")\nplt.xticks(rotation=45)\nplt.show()\n# Plot graph",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "report_file",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "report_file = open(\"report.txt\", \"w\")\nreport_file.write(\"Customer Feedback Analysis Report\\n\")\nreport_file.write(\"---------------------------------\\n\\n\")\n# Total feedback\ntotal_feedback = len(data)\nreport_file.write(f\"Total Feedback: {total_feedback}\\n\\n\")\n# Sentiment Summary\nreport_file.write(\"Sentiment Summary:\\n\")\nsentiment_counts = data[\"Sentiment\"].value_counts()\nfor sentiment, count in sentiment_counts.items():",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "total_feedback",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "total_feedback = len(data)\nreport_file.write(f\"Total Feedback: {total_feedback}\\n\\n\")\n# Sentiment Summary\nreport_file.write(\"Sentiment Summary:\\n\")\nsentiment_counts = data[\"Sentiment\"].value_counts()\nfor sentiment, count in sentiment_counts.items():\n    report_file.write(f\"{sentiment}: {count}\\n\")\nreport_file.write(\"\\n\")\ndef get_sentiment_with_score(text):\n    analysis = TextBlob(text)",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "sentiment_counts",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "sentiment_counts = data[\"Sentiment\"].value_counts()\nfor sentiment, count in sentiment_counts.items():\n    report_file.write(f\"{sentiment}: {count}\\n\")\nreport_file.write(\"\\n\")\ndef get_sentiment_with_score(text):\n    analysis = TextBlob(text)\n    polarity = analysis.sentiment.polarity\n    if polarity > 0:\n        sentiment = \"Positive\"\n    elif polarity < 0:",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "category_counts",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "category_counts = data[\"Complaint Category\"].value_counts()\nfor category, count in category_counts.items():\n    report_file.write(f\"{category}: {count}\\n\")\nreport_file.write(\"\\n\")\n# Top Keywords\nall_keywords = \" \".join(data[\"Keywords\"])\nword_list = all_keywords.split(\", \")\nkeyword_counts = Counter(word_list)\ntop_keywords = keyword_counts.most_common(5)\nreport_file.write(\"Top Keywords:\\n\")",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "all_keywords",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "all_keywords = \" \".join(data[\"Keywords\"])\nword_list = all_keywords.split(\", \")\nkeyword_counts = Counter(word_list)\ntop_keywords = keyword_counts.most_common(5)\nreport_file.write(\"Top Keywords:\\n\")\nfor word, count in top_keywords:\n    report_file.write(f\"{word}: {count}\\n\")\nreport_file.close()\nprint(\"\\nSummary report generated: report.txt\")\n# Combine all keywords",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "word_list",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "word_list = all_keywords.split(\", \")\nkeyword_counts = Counter(word_list)\ntop_keywords = keyword_counts.most_common(5)\nreport_file.write(\"Top Keywords:\\n\")\nfor word, count in top_keywords:\n    report_file.write(f\"{word}: {count}\\n\")\nreport_file.close()\nprint(\"\\nSummary report generated: report.txt\")\n# Combine all keywords\nall_keywords = \" \".join(data[\"Keywords\"])",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "keyword_counts",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "keyword_counts = Counter(word_list)\ntop_keywords = keyword_counts.most_common(5)\nreport_file.write(\"Top Keywords:\\n\")\nfor word, count in top_keywords:\n    report_file.write(f\"{word}: {count}\\n\")\nreport_file.close()\nprint(\"\\nSummary report generated: report.txt\")\n# Combine all keywords\nall_keywords = \" \".join(data[\"Keywords\"])\nword_list = all_keywords.split(\", \")",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "top_keywords",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "top_keywords = keyword_counts.most_common(5)\nreport_file.write(\"Top Keywords:\\n\")\nfor word, count in top_keywords:\n    report_file.write(f\"{word}: {count}\\n\")\nreport_file.close()\nprint(\"\\nSummary report generated: report.txt\")\n# Combine all keywords\nall_keywords = \" \".join(data[\"Keywords\"])\nword_list = all_keywords.split(\", \")\n# Count frequency",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "all_keywords",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "all_keywords = \" \".join(data[\"Keywords\"])\nword_list = all_keywords.split(\", \")\n# Count frequency\ncommon_words = Counter(word_list).most_common(10)\nprint(\"\\nTop Keywords:\")\nfor word, count in common_words:\n    print(word, \":\", count)\n    print(\"\\nComplaint Category Summary:\")\nprint(data[\"Complaint Category\"].value_counts())\ndata[\"Complaint Category\"].value_counts().plot(kind=\"bar\")",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "word_list",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "word_list = all_keywords.split(\", \")\n# Count frequency\ncommon_words = Counter(word_list).most_common(10)\nprint(\"\\nTop Keywords:\")\nfor word, count in common_words:\n    print(word, \":\", count)\n    print(\"\\nComplaint Category Summary:\")\nprint(data[\"Complaint Category\"].value_counts())\ndata[\"Complaint Category\"].value_counts().plot(kind=\"bar\")\nplt.title(\"Complaint Category Analysis\")",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "common_words",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "common_words = Counter(word_list).most_common(10)\nprint(\"\\nTop Keywords:\")\nfor word, count in common_words:\n    print(word, \":\", count)\n    print(\"\\nComplaint Category Summary:\")\nprint(data[\"Complaint Category\"].value_counts())\ndata[\"Complaint Category\"].value_counts().plot(kind=\"bar\")\nplt.title(\"Complaint Category Analysis\")\nplt.xlabel(\"Category\")\nplt.ylabel(\"Count\")",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "category_counts",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "category_counts = data[\"Complaint Category\"].value_counts()\nsuggestions = []\nfor category, count in category_counts.items():\n    if category == \"Delivery Issue\":\n        suggestions.append(f\"- Improve delivery process (Issues reported: {count})\")\n    elif category == \"Service Issue\":\n        suggestions.append(f\"- Provide customer service training (Issues reported: {count})\")\n    elif category == \"Product Issue\":\n        suggestions.append(f\"- Improve product quality control (Issues reported: {count})\")\n    elif category == \"Pricing Issue\":",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "suggestions",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "suggestions = []\nfor category, count in category_counts.items():\n    if category == \"Delivery Issue\":\n        suggestions.append(f\"- Improve delivery process (Issues reported: {count})\")\n    elif category == \"Service Issue\":\n        suggestions.append(f\"- Provide customer service training (Issues reported: {count})\")\n    elif category == \"Product Issue\":\n        suggestions.append(f\"- Improve product quality control (Issues reported: {count})\")\n    elif category == \"Pricing Issue\":\n        suggestions.append(f\"- Review pricing strategy (Issues reported: {count})\")",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "choice",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "choice = input(\"Enter choice: \")\nif choice == \"1\":\n    text = input(\"Enter feedback: \")\nelse:\n    data = pd.read_csv(\"feedback.csv\")",
+        "detail": "app",
         "documentation": {}
     },
     {
