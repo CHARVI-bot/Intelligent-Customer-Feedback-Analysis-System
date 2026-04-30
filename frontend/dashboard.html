@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics Dashboard | IntelliFeedback</title>
+    <meta name="description" content="Intelligent analytics dashboard for customer feedback.">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>IntelliFeedback</h1>
+        <nav>
+            <a href="index.html">Submit Feedback</a>
+            <a href="dashboard.html" class="active">Analytics Dashboard</a>
+        </nav>
+    </header>
+
+    <main class="container fade-in">
+        
+        <!-- Stats Overview -->
+        <div class="stats-grid" id="statsGrid">
+            <div class="glass-card stat-card">
+                <h3>Total Feedback</h3>
+                <div class="value" id="stat-total">-</div>
+            </div>
+            <div class="glass-card stat-card">
+                <h3>Avg Rating</h3>
+                <div class="value" id="stat-rating">-</div>
+            </div>
+            <div class="glass-card stat-card">
+                <h3>Positive Sentiment</h3>
+                <div class="value" id="stat-positive" style="background: linear-gradient(to right, #34d399, #10b981); -webkit-background-clip: text;">-</div>
+            </div>
+            <div class="glass-card stat-card">
+                <h3>Negative Sentiment</h3>
+                <div class="value" id="stat-negative" style="background: linear-gradient(to right, #f87171, #ef4444); -webkit-background-clip: text;">-</div>
+            </div>
+        </div>
+
+        <!-- Recent Feedback -->
+        <div class="glass-card">
+            <h2 style="margin-bottom: 2rem;">Recent Feedback (AI Analyzed)</h2>
+            <div id="loader" class="loader" style="margin: 3rem auto;"></div>
+            <div class="feedback-list" id="feedbackList">
+                <!-- Feedback items will be injected here -->
+            </div>
+        </div>
+
+    </main>
+
+    <script src="app.js"></script>
+    <script>
+        // Auto load dashboard data
+        document.addEventListener('DOMContentLoaded', () => {
+            loadDashboardData();
+        });
+    </script>
+</body>
+</html>

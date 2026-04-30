@@ -1,0 +1,265 @@
+[
+    {
+        "label": "FastAPI",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "Depends",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "CORSMiddleware",
+        "importPath": "fastapi.middleware.cors",
+        "description": "fastapi.middleware.cors",
+        "isExtraImport": true,
+        "detail": "fastapi.middleware.cors",
+        "documentation": {}
+    },
+    {
+        "label": "StaticFiles",
+        "importPath": "fastapi.staticfiles",
+        "description": "fastapi.staticfiles",
+        "isExtraImport": true,
+        "detail": "fastapi.staticfiles",
+        "documentation": {}
+    },
+    {
+        "label": "create_engine",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "Column",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "Integer",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "String",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "Float",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "Text",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "declarative_base",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
+        "label": "sessionmaker",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
+        "label": "Session",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
+        "label": "BaseModel",
+        "importPath": "pydantic",
+        "description": "pydantic",
+        "isExtraImport": true,
+        "detail": "pydantic",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "analyzer",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "analyzer",
+        "description": "analyzer",
+        "detail": "analyzer",
+        "documentation": {}
+    },
+    {
+        "label": "analyze_text",
+        "kind": 2,
+        "importPath": "analyzer",
+        "description": "analyzer",
+        "peekOfCode": "def analyze_text(text: str, rating: int) -> dict:\n    text_lower = text.lower()\n    # Determine Sentiment\n    sentiment_score = rating / 5.0  # basic correlation\n    sentiment = \"Neutral\"\n    if rating >= 4 or any(word in text_lower for word in [\"great\", \"excellent\", \"good\", \"amazing\", \"love\"]):\n        sentiment = \"Positive\"\n        sentiment_score = max(sentiment_score, 0.8)\n    elif rating <= 2 or any(word in text_lower for word in [\"bad\", \"poor\", \"terrible\", \"hate\", \"awful\", \"worst\"]):\n        sentiment = \"Negative\"",
+        "detail": "analyzer",
+        "documentation": {}
+    },
+    {
+        "label": "FeedbackDB",
+        "kind": 6,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "class FeedbackDB(Base):\n    __tablename__ = \"feedbacks\"\n    id = Column(Integer, primary_key=True, index=True)\n    customer_name = Column(String, index=True)\n    feedback_text = Column(Text)\n    rating = Column(Integer)\n    sentiment = Column(String)\n    sentiment_score = Column(Float)\n    themes = Column(String) # Comma separated\n    urgency = Column(String)",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "FeedbackCreate",
+        "kind": 6,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "class FeedbackCreate(BaseModel):\n    customer_name: str\n    feedback_text: str\n    rating: int\nclass FeedbackResponse(FeedbackCreate):\n    id: int\n    sentiment: str\n    sentiment_score: float\n    themes: str\n    urgency: str",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "FeedbackResponse",
+        "kind": 6,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "class FeedbackResponse(FeedbackCreate):\n    id: int\n    sentiment: str\n    sentiment_score: float\n    themes: str\n    urgency: str\n    created_at: str\n    class Config:\n        from_attributes = True\n# App setup",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "get_db",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def get_db():\n    db = SessionLocal()\n    try:\n        yield db\n    finally:\n        db.close()\n@app.post(\"/api/feedback\", response_model=FeedbackResponse)\ndef submit_feedback(feedback: FeedbackCreate, db: Session = Depends(get_db)):\n    # Analyze feedback intelligently\n    analysis = analyzer.analyze_text(feedback.feedback_text, feedback.rating)",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "submit_feedback",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def submit_feedback(feedback: FeedbackCreate, db: Session = Depends(get_db)):\n    # Analyze feedback intelligently\n    analysis = analyzer.analyze_text(feedback.feedback_text, feedback.rating)\n    db_feedback = FeedbackDB(\n        customer_name=feedback.customer_name,\n        feedback_text=feedback.feedback_text,\n        rating=feedback.rating,\n        sentiment=analysis[\"sentiment\"],\n        sentiment_score=analysis[\"sentiment_score\"],\n        themes=\",\".join(analysis[\"themes\"]),",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "get_feedbacks",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def get_feedbacks(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):\n    feedbacks = db.query(FeedbackDB).order_by(FeedbackDB.id.desc()).offset(skip).limit(limit).all()\n    return feedbacks\n@app.get(\"/api/stats\")\ndef get_stats(db: Session = Depends(get_db)):\n    feedbacks = db.query(FeedbackDB).all()\n    total = len(feedbacks)\n    if total == 0:\n        return {\"total\": 0, \"positive\": 0, \"neutral\": 0, \"negative\": 0, \"average_rating\": 0}\n    positive = sum(1 for f in feedbacks if f.sentiment == \"Positive\")",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "get_stats",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def get_stats(db: Session = Depends(get_db)):\n    feedbacks = db.query(FeedbackDB).all()\n    total = len(feedbacks)\n    if total == 0:\n        return {\"total\": 0, \"positive\": 0, \"neutral\": 0, \"negative\": 0, \"average_rating\": 0}\n    positive = sum(1 for f in feedbacks if f.sentiment == \"Positive\")\n    neutral = sum(1 for f in feedbacks if f.sentiment == \"Neutral\")\n    negative = sum(1 for f in feedbacks if f.sentiment == \"Negative\")\n    avg_rating = sum(f.rating for f in feedbacks) / total\n    return {",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "SQLALCHEMY_DATABASE_URL",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "SQLALCHEMY_DATABASE_URL = \"sqlite:///./feedback.db\"\nengine = create_engine(SQLALCHEMY_DATABASE_URL, connect_args={\"check_same_thread\": False})\nSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)\nBase = declarative_base()\nclass FeedbackDB(Base):\n    __tablename__ = \"feedbacks\"\n    id = Column(Integer, primary_key=True, index=True)\n    customer_name = Column(String, index=True)\n    feedback_text = Column(Text)\n    rating = Column(Integer)",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "engine",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "engine = create_engine(SQLALCHEMY_DATABASE_URL, connect_args={\"check_same_thread\": False})\nSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)\nBase = declarative_base()\nclass FeedbackDB(Base):\n    __tablename__ = \"feedbacks\"\n    id = Column(Integer, primary_key=True, index=True)\n    customer_name = Column(String, index=True)\n    feedback_text = Column(Text)\n    rating = Column(Integer)\n    sentiment = Column(String)",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "SessionLocal",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)\nBase = declarative_base()\nclass FeedbackDB(Base):\n    __tablename__ = \"feedbacks\"\n    id = Column(Integer, primary_key=True, index=True)\n    customer_name = Column(String, index=True)\n    feedback_text = Column(Text)\n    rating = Column(Integer)\n    sentiment = Column(String)\n    sentiment_score = Column(Float)",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "Base",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "Base = declarative_base()\nclass FeedbackDB(Base):\n    __tablename__ = \"feedbacks\"\n    id = Column(Integer, primary_key=True, index=True)\n    customer_name = Column(String, index=True)\n    feedback_text = Column(Text)\n    rating = Column(Integer)\n    sentiment = Column(String)\n    sentiment_score = Column(Float)\n    themes = Column(String) # Comma separated",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "app = FastAPI(title=\"Intelligent Customer Feedback API\")\napp.add_middleware(\n    CORSMiddleware,\n    allow_origins=[\"*\"],\n    allow_credentials=True,\n    allow_methods=[\"*\"],\n    allow_headers=[\"*\"],\n)\n# Dependency\ndef get_db():",
+        "detail": "main",
+        "documentation": {}
+    }
+]
